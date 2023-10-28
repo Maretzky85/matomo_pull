@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  matomo_pull:
+    env_file:
+      - .env
+    deploy:
+      placement:
+        constraints:
+          - node.labels.tools==true
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8080
+  db:
+    image: postgres:16
+    env_file:
+      - .env
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d

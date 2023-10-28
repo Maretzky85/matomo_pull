@@ -6,3 +6,4 @@ path
 .secrets
 coverage.xml
 .cache_ggshield
+.idea

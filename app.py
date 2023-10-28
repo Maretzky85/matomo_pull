@@ -47,7 +47,7 @@ def check_data(func):
 
 
 @app.route('/')
-@check_for_token
+# @check_for_token
 @check_data
 def index():
     data = request.args
@@ -57,7 +57,7 @@ def index():
         return jsonify(
             {'message': 'Database already updated'}
         ), 200
-    except Exception:
+    except Exception as e:
         return jsonify(
             {'message': 'Error executing script: recheck database variables'}
         ), 403
