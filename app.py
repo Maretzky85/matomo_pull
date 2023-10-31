@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import Flask, jsonify, request
 from functools import wraps
 from matomo_pull.utils import DatabaseAlreadyUpdatedError
@@ -50,6 +52,7 @@ def check_data(func):
 # @check_for_token
 @check_data
 def index():
+    print(datetime.now())
     data = request.args
     try:
         main.exec(data)
@@ -58,6 +61,7 @@ def index():
             {'message': 'Database already updated'}
         ), 200
     except Exception as e:
+        print(e)
         return jsonify(
             {'message': 'Error executing script: recheck database variables'}
         ), 403
